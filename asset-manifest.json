@@ -1,19 +1,33 @@
 {
   "files": {
-    "main.js": "/Photogallery/static/js/main.ad5af22f.chunk.js",
-    "main.js.map": "/Photogallery/static/js/main.ad5af22f.chunk.js.map",
+    "main.css": "/Photogallery/static/css/main.e9c78d0c.chunk.css",
+    "main.js": "/Photogallery/static/js/main.3d64eea5.chunk.js",
+    "main.js.map": "/Photogallery/static/js/main.3d64eea5.chunk.js.map",
     "runtime-main.js": "/Photogallery/static/js/runtime-main.a1509246.js",
     "runtime-main.js.map": "/Photogallery/static/js/runtime-main.a1509246.js.map",
-    "static/js/2.549c9638.chunk.js": "/Photogallery/static/js/2.549c9638.chunk.js",
-    "static/js/2.549c9638.chunk.js.map": "/Photogallery/static/js/2.549c9638.chunk.js.map",
+    "static/js/2.65939e44.chunk.js": "/Photogallery/static/js/2.65939e44.chunk.js",
+    "static/js/2.65939e44.chunk.js.map": "/Photogallery/static/js/2.65939e44.chunk.js.map",
     "index.html": "/Photogallery/index.html",
-    "precache-manifest.c6f6d2427d8848632d9ec11c4eb4c1ad.js": "/Photogallery/precache-manifest.c6f6d2427d8848632d9ec11c4eb4c1ad.js",
+    "precache-manifest.f07defce1cb564f0ea4bd7f4847c7ca8.js": "/Photogallery/precache-manifest.f07defce1cb564f0ea4bd7f4847c7ca8.js",
     "service-worker.js": "/Photogallery/service-worker.js",
-    "static/js/2.549c9638.chunk.js.LICENSE.txt": "/Photogallery/static/js/2.549c9638.chunk.js.LICENSE.txt"
+    "static/css/main.e9c78d0c.chunk.css.map": "/Photogallery/static/css/main.e9c78d0c.chunk.css.map",
+    "static/js/2.65939e44.chunk.js.LICENSE.txt": "/Photogallery/static/js/2.65939e44.chunk.js.LICENSE.txt",
+    "static/media/Antonette.jpg": "/Photogallery/static/media/Antonette.1f643104.jpg",
+    "static/media/Bret.jpg": "/Photogallery/static/media/Bret.71fcf694.jpg",
+    "static/media/Delphine.jpg": "/Photogallery/static/media/Delphine.e4dadf1d.jpg",
+    "static/media/Elwyn.jpg": "/Photogallery/static/media/Elwyn.8d617feb.jpg",
+    "static/media/Kamren.jpg": "/Photogallery/static/media/Kamren.9261eb12.jpg",
+    "static/media/Karianne.jpg": "/Photogallery/static/media/Karianne.3724dc1e.jpg",
+    "static/media/Leopoldo.jpg": "/Photogallery/static/media/Leopoldo.a518d8ce.jpg",
+    "static/media/Maxime.jpg": "/Photogallery/static/media/Maxime.e3994bb8.jpg",
+    "static/media/Moriah.jpg": "/Photogallery/static/media/Moriah.e2092ebd.jpg",
+    "static/media/Samantha.jpg": "/Photogallery/static/media/Samantha.fdb26065.jpg",
+    "static/media/stylesheet.css": "/Photogallery/static/media/arbutus-v10-latin-regular.f110126c.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.a1509246.js",
-    "static/js/2.549c9638.chunk.js",
-    "static/js/main.ad5af22f.chunk.js"
+    "static/js/2.65939e44.chunk.js",
+    "static/css/main.e9c78d0c.chunk.css",
+    "static/js/main.3d64eea5.chunk.js"
   ]
 }
