@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { 
     HashRouter as Router, 
     Switch, 
-    Route, 
+    Route,
     Redirect } from 'react-router-dom';
 
 import { GlobalStyle } from '../styles/GlobalStyle';
 import { Container } from '../styles/Container';
 
+import { COVER_MAP } from './Users/CoverMap';
 import { Header } from './Header/Header';
 import { Users } from './Users/Users';
 import { Albums } from './Albums/Albums';
@@ -24,6 +25,13 @@ const App = () => {
     const [error, setError] = useState();
 
     const PATHS = ['albums', 'photos', 'users'];
+    const newParseUsers = parseUsers.map(({ id, name, username }) => ({
+        id,
+        name,
+        username,
+        albums: parseAlbums.filter(item => item.userId === id).length,
+        image: COVER_MAP.filter(item => item.imageId === id).map(({ image }) => image).join()
+    }));
 
     useEffect(() => {
         PATHS.map((path) =>
@@ -53,14 +61,28 @@ const App = () => {
             <Container>
                 <Switch>
                     <Route 
-                        exact path='/users' 
-                        component={() => <Users parseUsers={parseUsers} />}
+                        exact 
+                        path={["/", "/users"]}
+                        component={() => 
+                            <Users 
+                                ParseUsers={newParseUsers} 
+                                error={error} 
+                                loading={loading} 
+                            />
+                        }
                     />
                     {parseUsers.map(({ id, username }) =>
                         <Route 
                             key={id} 
-                            exact path={`/users/${username}`} 
-                            component={() => <Albums parseAlbums={parseAlbums} propsId={id} username={username} />} 
+                            exact
+                            path={`/users/${username}`} 
+                            component={() => 
+                                <Albums 
+                                    parseAlbums={parseAlbums} 
+                                    propsId={id} 
+                                    username={username} 
+                                />
+                            } 
                         />
                     )}
                     {parseAlbums.map(({ id }) =>
@@ -72,32 +94,12 @@ const App = () => {
                         />
                     ))}
                     <Route component={Error} />
-                    <Route exact path="/" render={() => (
-                        <Redirect to="/users"/>
-                    )}/> //! Не работает,  почини позже
+                    <Redirect to="/" />
                 </Switch>
             </Container>
         </Router> 
         </>
     )
 }
-
-
-// const App = () => {
-
-
-
-//     if (error) {
-//         return <div> Ошибка: {error.message} </div>
-//     } else if (!loading) {
-//         return <p>Please wait...</p>
-//     } else {
-//         return (
-//             <>
-
-//             </>
-//         )
-//     }
-// }
 
 export default App;
