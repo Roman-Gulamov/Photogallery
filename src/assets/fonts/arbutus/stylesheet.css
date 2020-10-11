@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Arbutus';
+    font-style: normal;
+    font-weight: 400;
+    src: url('arbutus-v10-latin-regular.eot');
+    src: local(''),
+        url('arbutus-v10-latin-regular.eot?#iefix') format('embedded-opentype'),
+        url('arbutus-v10-latin-regular.woff2') format('woff2'), 
+        url('arbutus-v10-latin-regular.woff') format('woff'),
+        url('arbutus-v10-latin-regular.ttf') format('truetype'),
+        url('arbutus-v10-latin-regular.svg#Arbutus') format('svg');
+}
