@@ -44,4 +44,5 @@ export const CarouselImg = styled.div`
 
 export const ImgActive = styled.img`
     width: 80%;
+    height: 80%;
 ` 
