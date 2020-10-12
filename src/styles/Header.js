@@ -18,7 +18,12 @@ export const HeaderLogo = styled.div`
         transition: color .4s ease;
 
         @media screen and (max-width: 770px) {
+            margin-left: 0.5em;
             font-size: 1.3em;
+        }
+        
+        @media screen and (max-width: 300px) {
+            font-size: 0.8em;
         }
 
         &:hover {
