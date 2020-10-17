@@ -16,27 +16,14 @@ import { Error } from './Error/Error';
 
 const App = () => {
     const [parseUsers, setParseUsers] = useState([]);
+    const [newParseUsers, setNewParseUsers] = useState([]);
     const [parseAlbums, setParseAlbums] = useState([]);
+    const [newParseAlbums, setNewParseAlbums] = useState([]);
     const [parsePhotos, setParsePhotos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
 
     const PATHS = ['albums', 'photos', 'users'];
-    const newParseUsers = parseUsers.map(({ id, name, username }) => ({
-        id,
-        name,
-        username,
-        albumsCount: parseAlbums.filter(item => item.userId === id).length,
-        image: COVER_MAP.filter(item => item.imageId === id).map(({ image }) => image).join()
-    }));
-
-    const newParseAlbums = parseAlbums.map(({ userId, id, title }) => ({
-        userId,
-        id,
-        title,
-        photosCount: parsePhotos.filter(item => item.albumId === id).length,
-        image: parsePhotos.filter(item => item.albumId === id).splice(0,1).map(({ thumbnailUrl }) => thumbnailUrl).join()
-    }));
     
     useEffect(() => {
         PATHS.map((path) =>
@@ -57,6 +44,29 @@ const App = () => {
             )
         )
     }, [])
+
+
+    useEffect(() => {
+        setNewParseAlbums(parseAlbums.map(({ userId, id, title }) => ({
+            userId,
+            id,
+            title,
+            photosCount: parsePhotos.filter(item => item.albumId === id).length,
+            image: parsePhotos.filter(item => item.albumId === id).splice(0,1).map(({ thumbnailUrl }) => thumbnailUrl).join(),
+            username: parseUsers.filter(item => item.id === userId).map(({ username }) => username).join()
+        })));
+    }, [parseAlbums, parsePhotos])
+    
+    useEffect(() => {
+        setNewParseUsers(parseUsers.map(({ id, name, username }) => ({
+            id,
+            name,
+            username,
+            albumsCount: parseAlbums.filter(item => item.userId === id).length,
+            image: COVER_MAP.filter(item => item.imageId === id).map(({ image }) => image).join()
+        })));
+    }, [parseUsers])
+
 
     if (error) {
         return (
@@ -85,7 +95,7 @@ const App = () => {
                             path={["/", "/users"]}
                             component={() => <Users parseUsers={newParseUsers} />}
                         />
-                        {parseUsers.map(({ id, username }) =>
+                        {newParseUsers.map(({ id, username }) =>
                             <Route 
                                 key={id} 
                                 exact
@@ -99,15 +109,20 @@ const App = () => {
                                 } 
                             />
                         )}
-                        {parseAlbums.map(({ id }) =>
-                        parseUsers.map(({ username }) =>
+                        {newParseAlbums.map(({ id, username }) =>
                             <Route 
                                 key={id}
                                 exact
                                 path={`/users/${username}/album-${id}`} 
-                                component={() => <Photos parsePhotos={parsePhotos} propsId={id} username={username} />} 
+                                component={() => 
+                                    <Photos 
+                                        parsePhotos={parsePhotos} 
+                                        propsId={id} 
+                                        username={username} 
+                                    />
+                                } 
                             />
-                        ))}
+                        )}
                         <Route component={Error} />
                     </Switch>
                 </Container>
