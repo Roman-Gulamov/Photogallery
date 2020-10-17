@@ -20,8 +20,9 @@ const App = () => {
     const [parseAlbums, setParseAlbums] = useState([]);
     const [newParseAlbums, setNewParseAlbums] = useState([]);
     const [parsePhotos, setParsePhotos] = useState([]);
+    const [newParsePhotos, setNewParsePhotos] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
+    const [error, setError] = useState('');
 
     const PATHS = ['albums', 'photos', 'users'];
     
@@ -43,7 +44,7 @@ const App = () => {
                 }
             )
         )
-    }, [])
+    }, []);
 
 
     useEffect(() => {
@@ -55,8 +56,20 @@ const App = () => {
             image: parsePhotos.filter(item => item.albumId === id).splice(0,1).map(({ thumbnailUrl }) => thumbnailUrl).join(),
             username: parseUsers.filter(item => item.id === userId).map(({ username }) => username).join()
         })));
-    }, [parseAlbums, parsePhotos])
-    
+    }, [parseAlbums, parsePhotos, parseUsers]);
+
+    useEffect(() => {
+        setNewParsePhotos(parsePhotos.map(({ albumId, id, thumbnailUrl, title, url }) => ({
+            albumId,
+            id,
+            thumbnailUrl,
+            title,
+            prevUrl: parsePhotos.filter(item => item.id < id).splice(-1,1).map(({ url }) => url).join(),
+            url,
+            nextUrl: parsePhotos.filter(item => item.id > id).splice(0,1).map(({ url }) => url).join()
+        })));
+    }, [parsePhotos]);
+
     useEffect(() => {
         setNewParseUsers(parseUsers.map(({ id, name, username }) => ({
             id,
@@ -65,7 +78,7 @@ const App = () => {
             albumsCount: parseAlbums.filter(item => item.userId === id).length,
             image: COVER_MAP.filter(item => item.imageId === id).map(({ image }) => image).join()
         })));
-    }, [parseUsers])
+    }, [parseUsers, parseAlbums]);
 
 
     if (error) {
@@ -112,11 +125,10 @@ const App = () => {
                         {newParseAlbums.map(({ id, username }) =>
                             <Route 
                                 key={id}
-                                exact
                                 path={`/users/${username}/album-${id}`} 
                                 component={() => 
                                     <Photos 
-                                        parsePhotos={parsePhotos} 
+                                        parsePhotos={newParsePhotos} 
                                         propsId={id} 
                                         username={username} 
                                     />
