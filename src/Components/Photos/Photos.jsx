@@ -28,19 +28,11 @@ export const Photos = ({ parsePhotos, propsId, username }) => {
         url ? setActiveImg(url) : setActiveImg('');
     }
 
-    const handleActiveImg = (url, minus) => {
-        let currentIndex = parsePhotos.find(item => item.url === url.toString()).id;
-
-            if (currentIndex !== 1 && minus) {
-                currentIndex--
-            } else if (currentIndex !== 5000 && !minus) {
-                currentIndex++
-            } else {
-                return currentIndex
-            }
-        
-        let newActiveImg = parsePhotos.filter(item => item.id === currentIndex).map(({ url }) => url);
-        setActiveImg(newActiveImg);
+    const handleActiveImg = (url, prev) => {
+        prev ? 
+            setActiveImg(parsePhotos.filter(item => item.url === url).map(({ prevUrl }) => prevUrl).join())
+        :
+            setActiveImg(parsePhotos.filter(item => item.url === url).map(({ nextUrl }) => nextUrl).join())
     }
     
 
