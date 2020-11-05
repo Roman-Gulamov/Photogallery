@@ -1,4 +1,4 @@
-## Instructions for starting a project:
+# Instructions for starting a project:
 
 1. `git clone https://github.com/Roman-Gulamov/Photogallery.git`
 
