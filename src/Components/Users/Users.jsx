@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +14,8 @@ import {
 
 
 export const Users = ({ parseUsers }) => {
+    const currentPage = useRouteMatch();
+
     return (
         <Wrapper>
             {parseUsers.map(({ id, name, username, image, albumsCount }) =>
@@ -24,7 +26,7 @@ export const Users = ({ parseUsers }) => {
                         <ItemText users>{albumsCount} albums</ItemText>
                         <ItemHover>
                             <Hover>
-                                <Link to={`/users/${username}`}>
+                                <Link to={`${currentPage.url}/${username}`}>
                                     <FontAwesomeIcon icon={faFolderOpen} size="3x" />
                                 </Link>
                             </Hover>
